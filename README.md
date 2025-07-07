@@ -18,14 +18,25 @@ A Next.js application for exploring Pokemon data from PokeAPI.
 
 ## Getting Started
 
-1. Clone this repository
+1. Clone this repository :
+
+git clone https://github.com/your-username/pokemon-explorer.git
+cd pokemon-explorer
+
 2. Install dependencies:
 
-```bash
 npm install
 
+3.Start the development server:
+
+npm run dev
+
+
+
+.................................................................................................................
 
 Pokemon Explorer - How I Built It
+
 
 1. Layout Component (components/Layout.js)
 This is like the frame that holds everything together. I made sure every page has:
