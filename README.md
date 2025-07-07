@@ -1,40 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Pokemon Explorer
+
+A Next.js application for exploring Pokemon data from PokeAPI.
+
+## Features
+
+- Browse a list of Pokemon
+- Search for Pokemon by name
+- View detailed information about each Pokemon
+- Responsive design
+
+## Technologies Used
+
+- Next.js
+- React
+- Tailwind CSS
+- PokeAPI
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository
+2. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+npm install
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Pokemon Explorer - How I Built It
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+1. Layout Component (components/Layout.js)
+This is like the frame that holds everything together. I made sure every page has:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+A consistent red header with the Pokeball logo and app title
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+A simple footer giving credit to the PokeAPI
 
-## Learn More
+Proper HTML structure for better SEO
+I used Next.js's Head component to manage page titles and metadata.
 
-To learn more about Next.js, take a look at the following resources:
+2. Pokemon Cards (components/PokemonCard.js)
+Each Pokemon gets its own card showing:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+The Pokemon's name and ID number (formatted as #001, #025 etc.)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+An image of the Pokemon
 
-## Deploy on Vercel
+Color-coded type tags (water=blue, fire=red etc.)
+The cards are clickable and take you to that Pokemon's detailed page. I made sure the images load efficiently and added a nice hover effect.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Pokemon Details Page (components/PokemonDetails.js)
+When you click a Pokemon, you see:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+A large image on the left
+
+All the stats with visual bars showing their strength
+
+The Pokemon's abilities
+
+A list of moves (showing first 30 with a "+ more" indicator)
+I organized this in a clean two-column layout that works on mobile too.
+
+4. Search Functionality (components/SearchBar.js)
+I built a search bar that:
+
+Lets you type a Pokemon name
+
+Updates the URL when you search
+
+Shows results instantly
+It handles basic errors like empty searches and keeps the search term in the URL.
+
+5. Homepage (pages/index.js)
+The main page does several things:
+
+Loads the first 151 Pokemon when you first visit
+
+Shows a loading spinner while waiting
+
+Displays errors if something goes wrong
+
+Changes to search results when you use the search bar
+I added an 8-second timeout so it won't hang forever if the API is slow.
+
+6. Individual Pokemon Pages (pages/pokemon/[id].js)
+Each Pokemon has its own page that:
+
+Gets its data based on the ID in the URL
+
+Shows a loading spinner while loading
+
+Displays errors if the Pokemon can't be found
+
+Has a back button to return to the main list
+
+7. Configuration (next.config.js)
+I set up the project to:
+
+Allow images from the Pokemon API domain
+
+Keep React's strict mode for better code quality
+
+Handle image optimization properly
